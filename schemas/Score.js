@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 //initialize Mongo schema
 const Schema = mongoose.Schema;
 
-//create a schema object
+// create a schema object
 const ScoreSchema = new Schema({
     id: {
         type: String,
@@ -82,5 +82,16 @@ const ScoreSchema = new Schema({
     }
 });
 
-//Score: the name of this model
-module.exports = mongoose.model('scores30082023', ScoreSchema);
+// Compound index example
+ScoreSchema.index({ test_date: -1, quiz: 1 }); // Compound index on test_date and quiz
+
+// Create indexes
+ScoreSchema.index({ test_date: -1 }); // Index for sorting by test_date
+
+// Indexes for population
+ScoreSchema.index({ quiz: 1 }); // Index for populating quiz
+ScoreSchema.index({ category: 1 }); // Index for populating category
+ScoreSchema.index({ taken_by: 1 }); // Index for populating taken_by
+
+// export the schema
+module.exports = ScoreSchema

@@ -61,5 +61,10 @@ const UserSchema = new Schema({
   }
 });
 
-//User: the name of this model
-module.exports = mongoose.model('user', UserSchema);
+// Create indexes for the User model
+UserSchema.index({ school: 1 }); // Index for populating school
+UserSchema.index({ level: 1 }); // Index for populating level
+UserSchema.index({ faculty: 1 }); // Index for populating faculty
+
+//User: the name of this schema
+module.exports = UserSchema

@@ -21,8 +21,7 @@ const QuizSchema = new Schema({
   },
   category: {
     type: Schema.Types.ObjectId,
-    ref: 'category',
-    unique: true
+    ref: 'category'
   },
   questions: [
     {
@@ -33,12 +32,10 @@ const QuizSchema = new Schema({
   created_by: {
     type: Schema.Types.ObjectId,
     ref: 'user',
-    unique: true
   },
   last_updated_by: {
     type: Schema.Types.ObjectId,
-    ref: 'user',
-    unique: true
+    ref: 'user'
   },
   slug: {
     type: String,
@@ -61,5 +58,8 @@ const QuizSchema = new Schema({
   }
 })
 
-//Quiz: the name of this model
-module.exports = mongoose.model('quiz', QuizSchema)
+// Create indexes for the Quiz model
+QuizSchema.index({ category: 1 }); // Index for populating category
+
+//Quiz: the name of this schema
+module.exports = QuizSchema

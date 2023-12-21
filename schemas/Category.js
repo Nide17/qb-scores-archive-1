@@ -39,5 +39,8 @@ const CategorySchema = new Schema({
   }
 });
 
-//Category: the name of this model
-module.exports = mongoose.model('category', CategorySchema);
+// Create indexes for the Category model
+CategorySchema.index({ courseCategory: 1 }); // Index for populating courseCategory
+
+//Category: the name of this schema
+module.exports = CategorySchema
